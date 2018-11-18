@@ -1,0 +1,20 @@
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+
+export const GET_CLIENTS = "GET_CLIENTS";
+export const CLEAR_CLIENTS = "CLEAR_CLIENTS";
+export const SET_CLIENT = "SET_CLIENT";
+export const CLEAR_CLIENT = "CLEAR_CLIENT";
+
+export const GET_MOVIES = "GET_MOVIES";
+export const CLEAR_MOVIES = "CLEAR_MOVIES";
+export const CREATE_MOVIE = "CREATE_MOVIE";
+export const SET_MOVIE = "SET_MOVIE";
+export const CLEAR_MOVIE = "CLEAR_MOVIE";
+
+export const GET_RENTED_MOVIES = "GET_RENTED_MOVIES";
+export const CLEAR_RENTED_MOVIES = "CLEAR_RENTED_MOVIES";
+export const CREATE_RENTED_MOVIE = "CREATE_RENTED_MOVIE";
+
+export const GET_SEARCH_MOVIES = "GET_SEARCH_MOVIES";
+export const CLEAR_SEARCH_MOVIES = "CLEAR_SEARCH_MOVIES";

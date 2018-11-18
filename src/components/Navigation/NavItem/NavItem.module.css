@@ -1,0 +1,12 @@
+.navItem {
+   padding: 0 1.5vw;
+   border-right: 1px solid gray;
+}
+
+.navItem:hover {
+   background-color: rgb(88, 88, 79);
+}
+
+.navItem:last-child {
+   border-right: none;
+}
