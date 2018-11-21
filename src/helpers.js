@@ -5,3 +5,5 @@ export const calculateDebt = (currentDebt, rentedMovies) => {
    rentedMovies.forEach(movie => {interest += Math.floor((currentDate - movie.rentedAt) / 86400000)});
    return currentDebt + interest;
 };
+
+export const findByImdbID = (imdbID, movieList) => movieList.find(movie => movie.imdbID === imdbID);

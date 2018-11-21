@@ -19,7 +19,6 @@ export const clearMovies = {
    type: actionTypes.CLEAR_MOVIES
 };
 
-//CONTINUE HERE
 export const createMovie = imdbId => {
    return dispatch => {
       const headers = {Authorization: localStorage.getItem("token")};
@@ -47,6 +46,7 @@ const buildMovie = imdbId => {
 
                const newMovieData = {
                   title: movie.title,
+                  imdbId,
                   image: movie.Poster,
                   released: movie.Released,
                   directedBy: movie.Director,

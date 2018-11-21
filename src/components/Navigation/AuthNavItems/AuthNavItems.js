@@ -3,10 +3,10 @@ import NavItem from "../NavItem/NavItem";
 
 const AuthNavItems = props => (
    <Fragment>
-      <NavItem url="/login">
+      <NavItem url="/auth/login">
          Login
       </NavItem>
-      <NavItem url="/register">
+      <NavItem url="/auth/register">
          Register
       </NavItem>
    </Fragment>
