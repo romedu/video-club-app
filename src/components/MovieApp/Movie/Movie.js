@@ -4,6 +4,7 @@ import {getMovies} from "../../../store/actions/movie";
 import {createMovie, setMovie, clearMovie} from "../../../store/actions/movie";
 import {findByImdbID} from "../../../helpers";
 import MoviePage from "../MoviePage/MoviePage";
+import style from "./Movie.module.css";
 
 class Movie extends Component {
    componentDidMount(){
@@ -27,8 +28,8 @@ class Movie extends Component {
       const {current: currentMovie} = this.props.movies;
 
       return (
-         <section>
-            {currentMovie && <MoviePage {...currentMovie} />}
+         <section className={style.Movie}>
+            {currentMovie && <MoviePage movie={currentMovie} />}
          </section>
       )
    }
