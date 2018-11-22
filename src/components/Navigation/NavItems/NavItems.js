@@ -10,7 +10,6 @@ const NavItems = props => {
    const navItems = [],
          {user} = props;
    
-   console.log(user);
    if(user){
       navItems.push(<NavItem key={"navItem0"} url="/"> Home </NavItem>);
       if(user.isAdmin) navItems.push(<AdminNavItems key={"navItem1"} />);

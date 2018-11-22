@@ -7,11 +7,11 @@ const initialState = {
 
 const reducer = (prevState = initialState, actions) => {
    switch(actions.type){
-      case actionTypes.GET_MOVIES: return {list: actions.movies};
-      case actionTypes.CLEAR_MOVIES: return {list: []};
-      case actionTypes.CREATE_MOVIE: return {list: prevState.list.concat(actions.newMovie)};
-      case actionTypes.SET_MOVIE: return {current: actions.movie};
-      case actionTypes.CLEAR_MOVIE: return {current: null};
+      case actionTypes.GET_MOVIES: return {...prevState, list: actions.movies};
+      case actionTypes.CLEAR_MOVIES: return {...prevState, list: []};
+      case actionTypes.CREATE_MOVIE: return {...prevState, list: prevState.list.concat(actions.newMovie)};
+      case actionTypes.SET_MOVIE: return {...prevState, current: actions.movie};
+      case actionTypes.CLEAR_MOVIE: return {...prevState, current: null};
       default: return prevState;
    }
 };

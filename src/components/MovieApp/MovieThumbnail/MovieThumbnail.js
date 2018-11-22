@@ -1,9 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import styles from "./MovieThumbnail.module.css";
 
 const MovieThumbnail = props => (
    <Link to={`/movies/${props.imdbID}`}>
-      <li>
+      <li className={styles.movieThumbnail}>
          <h4>
             {props.Title}
          </h4>

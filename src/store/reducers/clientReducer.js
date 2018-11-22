@@ -8,10 +8,10 @@ const initialState = {
 
 const reducer = (prevState = initialState, actions) => {
    switch(actions.type){
-      case actionTypes.GET_CLIENTS: return {list: actions.clients};
-      case actionTypes.CLEAR_CLIENTS: return {list: []};
-      case actionTypes.SET_CLIENT: return {current: {...actions.client, debt: calculateDebt(actions.client.debt, actions.client.rentedMovies)}};
-      case actionTypes.CLEAR_CLIENT: return {current: null};
+      case actionTypes.GET_CLIENTS: return {...prevState, list: actions.clients};
+      case actionTypes.CLEAR_CLIENTS: return {...prevState, list: []};
+      case actionTypes.SET_CLIENT: return {...prevState, current: {...actions.client, debt: calculateDebt(actions.client.debt, actions.client.rentedMovies)}};
+      case actionTypes.CLEAR_CLIENT: return {...prevState, current: null};
       default: return prevState;
    }
 };

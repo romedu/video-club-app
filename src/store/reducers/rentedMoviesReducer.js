@@ -6,9 +6,9 @@ const initialState = {
 
 const reducer = (prevState = initialState, actions) => {
    switch(actions.type){
-      case actionTypes.GET_RENTED_MOVIES: return {list: actions.movies};
-      case actionTypes.CLEAR_RENTED_MOVIES: return {list: []};
-      case actionTypes.CREATE_RENTED_MOVIE: return {list: prevState.list.concat(actions.newMovie)};
+      case actionTypes.GET_RENTED_MOVIES: return {...prevState, list: actions.movies};
+      case actionTypes.CLEAR_RENTED_MOVIES: return {...prevState, list: []};
+      case actionTypes.CREATE_RENTED_MOVIE: return {...prevState, list: prevState.list.concat(actions.newMovie)};
       default: return prevState;
    }
 };

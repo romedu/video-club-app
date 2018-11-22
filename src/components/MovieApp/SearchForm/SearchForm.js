@@ -39,7 +39,7 @@ class SearchForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-   onMovieSearch: (title, year) => dispatch(searchMovie(title, year))
+   onMovieSearch: (title, year) => dispatch(searchMovie({title, year}))
 });
 
 export default connect(null, mapDispatchToProps)(SearchForm);

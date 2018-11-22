@@ -6,4 +6,8 @@ export const calculateDebt = (currentDebt, rentedMovies) => {
    return currentDebt + interest;
 };
 
-export const findByImdbID = (imdbID, movieList) => movieList.find(movie => movie.imdbID === imdbID);
+export const findByImdbID = (imdbID, movieList) => {
+   console.log("inside the find");
+   const foundMovie = movieList.find(movie => movie.imdbID === imdbID);
+   return foundMovie;
+};

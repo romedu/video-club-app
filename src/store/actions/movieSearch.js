@@ -1,10 +1,9 @@
 import qwest from "qwest";
 import * as actionTypes from "./actionTypes";
 
-export const searchMovie = (title, year) => {
+export const searchMovie = searchBody => {
    return dispatch => {
-      const searchQuery = year ? `s=${title}&y=${year}` : `s=${title}`;
-      return qwest.get(`http://www.omdbapi.com/?apikey=thewdb&${searchQuery}`)
+      return qwest.post(`/api/services/searchMovies`, searchBody)
                .then(data => JSON.parse(data.response))
                .then(movieResults => dispatch({
                   type: actionTypes.GET_SEARCH_MOVIES,
