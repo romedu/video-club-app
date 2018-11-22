@@ -1,5 +1,6 @@
 import qwest from "qwest";
 import {LOGIN, LOGOUT} from "./actionTypes";
+import {calculateDebt} from "../../helpers";
 
 export const loginUser = userData => {
    return dispatch => {
@@ -43,10 +44,16 @@ export const verifyUser = () => {
    }
 }
 
-const setUser = userData => ({
-   type: LOGIN,
-   userData
-});
+const setUser = user => {
+   const {rentedMovies, ...userData} = user;
+   userData.debt = calculateDebt(userData.debt, rentedMovies);
+
+   return ({
+      type: LOGIN,
+      userData,
+      rentedMovies
+   });
+};
 
 export const logoutUser = () => {
    localStorage.removeItem("token");
