@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {simplifyDate} from "../../../helpers";
 import Button from "../../UI/Button/Button";
 
-const RentedPage = ({movie}) => (
+const RentedPage = ({movie, returnMovie}) => (
    <Fragment>
       <h2>
          {movie.title}
@@ -21,7 +21,7 @@ const RentedPage = ({movie}) => (
       <Link to={`/movies/${movie.imdbID}`}>
          Movie Description
       </Link>
-      <Button>
+      <Button action={returnMovie}>
          Return Movie
       </Button>
    </Fragment>

@@ -55,3 +55,17 @@ export const setRentedMovie = movie => ({
    type: actionTypes.SET_MOVIE,
    movie
 });
+
+export const deleteRentedMovie = (movieId, imdbID) => {
+   return dispatch => {
+      const headers = {Authorization: localStorage.getItem("token")};
+      return qwest["delete"](`/api/rentedMovies/${movieId}`, {imdbID}, {headers})
+               .then(data => JSON.parse(data.response))
+               .then(message => dispatch({
+                  type: actionTypes.CLEAR_MOVIE
+               }))
+               .catch(error => {
+                  //HANDLE ERROR
+               })
+   }
+}
