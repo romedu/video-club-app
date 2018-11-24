@@ -45,13 +45,11 @@ export const verifyUser = () => {
 }
 
 const setUser = user => {
-   const {rentedMovies, ...userData} = user;
-   userData.debt = calculateDebt(userData.debt, rentedMovies);
+   user.debt = calculateDebt(user.debt, user.rentedMovies);
 
    return ({
       type: LOGIN,
-      userData,
-      rentedMovies
+      user
    });
 };
 

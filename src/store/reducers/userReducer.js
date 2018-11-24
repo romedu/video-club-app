@@ -1,13 +1,12 @@
 import {LOGIN} from "../actions/actionTypes";
 
 const initialState = {
-   userData: null,
-   rentedMovies: []
+   userData: null
 };
 
 const reducer = (prevState = initialState, actions) => {
    switch(actions.type){
-      case LOGIN: return {userData: actions.userData, rentedMovies: actions.rentedMovies};
+      case LOGIN: return {userData: actions.user};
       default: return prevState;
    }
 }

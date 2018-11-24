@@ -39,17 +39,19 @@ export const createRentedMovie = (movie, rentedDays) => {
    }
 }
 
-export const setRentedMovie = movieId => {
+export const getAndSetRentedMovie = movieId => {
    return dispatch => {
       const headers = {Authorization: localStorage.getItem("token")};
-      return qwest.get(`/api/rentedMovies/${movieId}`, null, headers)
+      return qwest.get(`/api/rentedMovies/${movieId}`, null, {headers})
                .then(data => JSON.parse(data.response))
-               .then(movie => dispatch({
-                  type: actionTypes.SET_MOVIE,
-                  movie
-               }))
+               .then(rentedMovie => dispatch(setRentedMovie(rentedMovie)))
                .catch(error => {
                   //HANDLE ERROR
                })
    }
 };
+
+export const setRentedMovie = movie => ({
+   type: actionTypes.SET_MOVIE,
+   movie
+});

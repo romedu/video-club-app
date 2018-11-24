@@ -1,0 +1,8 @@
+.ClientThumbnail {
+   width: 80vw;
+   height: 20vh;
+   margin: 2vh 10vh;
+   padding: 0.1vh 0;
+   border: 1px solid black;
+   list-style: none;
+}

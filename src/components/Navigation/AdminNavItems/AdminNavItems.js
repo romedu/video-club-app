@@ -3,7 +3,7 @@ import NavItem from "../NavItem/NavItem";
 
 const AdminNavItems = props => (
    <Fragment>
-      <NavItem url="/rentedMovies">
+      <NavItem url="/rented-movies">
          Rented Movies
       </NavItem>
       <NavItem url="/clients">

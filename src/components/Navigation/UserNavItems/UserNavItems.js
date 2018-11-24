@@ -6,8 +6,8 @@ import {logoutUser} from "../../../store/actions/user";
 
 const UserNavItems = props => (
    <Fragment>
-      <NavItem url="/my-movies">
-         My Rented Movies
+      <NavItem url="/my-profile">
+         My Profile
       </NavItem>
       <Button color="NavItem" action={props.onUserLogout}>
          Logout

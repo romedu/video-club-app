@@ -1,9 +1,9 @@
 .navBar {
    position: fixed;
    top: 0;
-   width: 98vw;
+   width: 97vw;
    height: 10vh;
-   padding: 0 1vw;
+   padding: 0 2vw 0 1vw;
    color: white;
    background-color: black;
    display: flex;

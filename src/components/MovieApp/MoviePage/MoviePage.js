@@ -8,7 +8,7 @@ class MoviePage extends Component {
       daysForRent: 0
    };
 
-   updateInput = newValue => this.setState({daysForRent: newValue});
+   updateInput = e => this.setState({daysForRent: e.target.value});
 
    rentMovie = () => this.props.onMovieRent(this.props.movie, this.state.daysForRent);
 
@@ -61,7 +61,7 @@ class MoviePage extends Component {
             </p>
             <div>
             <h3> Rent the movie </h3>
-            <input type="number" min="1" max="7" value={daysForRent} />
+            <input type="number" min="1" max="7" onChange={this.updateInput} value={daysForRent} />
             <Button color={daysForRent < 1 ? "disabled" : "sale"} action={this.rentMovie}>
                Rent Movie
             </Button>
