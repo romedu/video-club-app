@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getAndSetRentedMovie, deleteRentedMovie} from "../../../store/actions/rentedMovie";
-import {clearMovie} from "../../../store/actions/movie";
+import {clearRentedMovie} from "../../../store/actions/rentedMovie";
 import RentedPage from "../RentedPage/RentedPage";
 
 class RentedMovie extends Component {
@@ -20,7 +20,7 @@ class RentedMovie extends Component {
    }
 
    componentWillUnmount(){
-      this.props.onClearMovie();
+      this.props.onClearRentedMovie();
    }
 
    render(){
@@ -34,12 +34,12 @@ class RentedMovie extends Component {
 }
 
 const mapStateToProps = state => ({
-   currentMovie: state.movies.current
+   currentMovie: state.rentedMovies.current
 });
 
 const mapDispatchToProps = dispatch => ({
    onSetRentedMovie: movieId => dispatch(getAndSetRentedMovie(movieId)),
-   onClearMovie: () => dispatch(clearMovie),
+   onClearRentedMovie: () => dispatch(clearRentedMovie),
    onRentedMovieDelete: (movieId, imdbID) => dispatch(deleteRentedMovie(movieId, imdbID))
 });
 

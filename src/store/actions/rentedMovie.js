@@ -51,9 +51,13 @@ export const getAndSetRentedMovie = movieId => {
    }
 };
 
-export const setRentedMovie = movie => ({
-   type: actionTypes.SET_MOVIE,
-   movie
+export const setRentedMovie = rentedMovie => ({
+   type: actionTypes.SET_RENTED_MOVIE,
+   rentedMovie
+});
+
+export const clearRentedMovie = ({
+   type: actionTypes.CLEAR_RENTED_MOVIE
 });
 
 export const deleteRentedMovie = (movieId, imdbID) => {
@@ -62,7 +66,7 @@ export const deleteRentedMovie = (movieId, imdbID) => {
       return qwest["delete"](`/api/rentedMovies/${movieId}`, {imdbID}, {headers})
                .then(data => JSON.parse(data.response))
                .then(message => dispatch({
-                  type: actionTypes.CLEAR_MOVIE
+                  type: actionTypes.CLEAR_RENTED_MOVIE
                }))
                .catch(error => {
                   //HANDLE ERROR
