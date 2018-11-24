@@ -15,9 +15,9 @@ const RentedPage = ({movie}) => (
       <h4>
          Due Date: {simplifyDate(movie.rentedAt, movie.rentedDays)}
       </h4>
-      <h4>
-         Rented By: {movie.rentedBy}
-      </h4>
+      <Link to={`/clients/${movie.rentedBy._id}`} style={{display: "block"}}>
+         Rented By: {`${movie.rentedBy.name} ${movie.rentedBy.lastName}`}
+      </Link>
       <Link to={`/movies/${movie.imdbID}`}>
          Movie Description
       </Link>
