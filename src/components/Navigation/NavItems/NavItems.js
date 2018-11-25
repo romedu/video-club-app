@@ -18,7 +18,7 @@ const NavItems = props => {
    else navItems.push(<AuthNavItems key={"navItem3"}/>);
 
    return (
-      <ul className={styles.navItems}>
+      <ul className={styles.NavItems}>
          {navItems}
       </ul>
    );

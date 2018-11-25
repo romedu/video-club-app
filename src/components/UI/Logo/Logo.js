@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import movieRollImage from "../../assets/images/movie-roll.png";
+import movieRollImage from "../../../assets/images/movie-roll.png";
 import style from "./Logo.module.css";
 
 const Logo = props => (

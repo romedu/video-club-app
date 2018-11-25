@@ -1,4 +1,4 @@
-.navBar {
+.NavBar {
    position: fixed;
    top: 0;
    width: 97vw;
@@ -8,4 +8,10 @@
    background-color: black;
    display: flex;
    justify-content: space-between;
+}
+
+@media(max-width: 599px){
+   .NavBar {
+      display: none;
+   }
 }

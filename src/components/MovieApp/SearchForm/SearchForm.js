@@ -23,14 +23,14 @@ class SearchForm extends Component {
    }
 
    render(){
-      const {title, year} = this.state;
+      const {title} = this.state;
 
       return (
          <form onSubmit={this.onFormSubmit}>
             <InputField type="text" name="title" placeholder="Search by movie title" value={title} updateInput={this.onInputUpdate} />
-            <InputField type="number" name="year" value={year} updateInput={this.onInputUpdate}>
+            {/* <InputField type="number" name="year" value={this.state.year} updateInput={this.onInputUpdate}>
                Year:
-            </InputField>
+            </InputField> */}
             <Button color="submit" disabled={this.props.disabled}>
                Find movie
             </Button>
