@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getAndSetRentedMovie, deleteRentedMovie} from "../../../store/actions/rentedMovie";
 import {clearRentedMovie} from "../../../store/actions/rentedMovie";
+import {createMessage} from "../../../store/actions/message";
 import RentedPage from "../RentedPage/RentedPage";
 import Loader from "../../UI/Loader/Loader";
 
@@ -15,11 +16,10 @@ class RentedMovie extends Component {
       onSetRentedMovie(match.params.id);
    }
 
-   componentDidUpdate(prevProps){
+   componentDidUpdate(){
       const {isLoading} = this.state,
-            {currentMovie, history} = this.props;
+            {currentMovie} = this.props;
       if(isLoading && currentMovie) this.setState({isLoading: false});
-      else if(prevProps.currentMovie && !currentMovie) history.goBack();
    }
 
    componentWillUnmount(){
@@ -45,7 +45,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
    onSetRentedMovie: movieId => dispatch(getAndSetRentedMovie(movieId)),
    onClearRentedMovie: () => dispatch(clearRentedMovie),
-   onRentedMovieDelete: (movieId, imdbID) => dispatch(deleteRentedMovie(movieId, imdbID))
+   onRentedMovieDelete: (movieId, imdbID) => dispatch(deleteRentedMovie(movieId, imdbID)),
+   onMessageCreate: (label, content) => dispatch(createMessage(label, content))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RentedMovie);

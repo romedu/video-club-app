@@ -1,11 +1,17 @@
 import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 import {clearMessage} from "../../../store/actions/message";
 import Class from "./Modal.module.css";
 import Backdrop from "../Backdrop/Backdrop";
 
 class Modal extends Component {
-   closeModalHandler = () => this.props.onMessageClear();
+   closeModalHandler = () => {
+      const {history, location, onMessageClear} = this.props;
+      onMessageClear();
+      if(location.pathname === "/auth/login") history.push("/");
+      else history.goBack();
+   }
 
    render(){
       const styles = {
@@ -29,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
    onMessageClear: () => dispatch(clearMessage)
 });
 
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(null, mapDispatchToProps)(withRouter(Modal));

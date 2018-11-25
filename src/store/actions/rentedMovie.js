@@ -80,7 +80,9 @@ export const deleteRentedMovie = (movieId, imdbID) => {
                   return response;
                })
                .then(message => dispatch({
-                  type: actionTypes.CLEAR_RENTED_MOVIE
+                  type: actionTypes.CREATE_MESSAGE,
+                  label: "Message",
+                  content: "Movie returned successfully"
                }))
                .catch(error => dispatch(createMessage("Error", error.message)))
    }

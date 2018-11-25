@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {createMessage} from "../../../store/actions/message";
 import {registerUser} from "../../../store/actions/user";
 import InputField from "../../UI/InputField/InputField";
 import Button from "../../UI/Button/Button";
@@ -26,9 +27,11 @@ class RegisterForm extends Component {
 
    onFormSubmit = e => {
       e.preventDefault();
-      const {isLoading, ...userData} = this.state;
-      if(userData.password === userData.confirmPassword) this.setState({isLoading: true}, () => this.props.onUserRegister(userData));
-      else console.log("create message");
+      const {isLoading, ...userData} = this.state,
+            {onUserRegister, onMessageCreate} = this.props;
+            
+      if(userData.password === userData.confirmPassword) this.setState({isLoading: true}, () => onUserRegister(userData));
+      else onMessageCreate("Error", "Your password and password confirmation fields must match");
    }
 
    render(){
@@ -81,7 +84,8 @@ class RegisterForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-   onUserRegister: userData => dispatch(registerUser(userData))
+   onUserRegister: userData => dispatch(registerUser(userData)),
+   onMessageCreate: (label, content) => dispatch(createMessage(label, content))
 });
 
 export default connect(null, mapDispatchToProps)(RegisterForm);
