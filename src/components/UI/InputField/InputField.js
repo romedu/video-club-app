@@ -6,7 +6,8 @@ const inputField = props => (
             {props.children}
         </label>
         <input type={props.type} name={props.name} value={props.value} checked={props.checked} onChange={props.updateInput} 
-               placeholder={props.placeholder || props.children} autoComplete="off"/>
+               placeholder={props.placeholder || props.children} autoComplete="off" 
+               required={props.type !== "checkbox" && props.type !== "radio"}/>
     </fieldset>
 );
 

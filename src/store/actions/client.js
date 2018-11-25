@@ -1,18 +1,22 @@
 import * as actionTypes from "./actionTypes";
 import qwest from "qwest";
+import {createMessage} from "./message";
 
 export const getClients = () => {
    return dispatch => {
       const headers = {Authorization: localStorage.getItem("token")};
       return qwest.get("/api/users", null, {headers})
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
                .then(clients => dispatch({
                   type: actionTypes.GET_CLIENTS,
                   clients
                }))
-               .catch(error => {
-                  //HANDLE ERROR
-               })
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 };
 
@@ -25,10 +29,12 @@ export const getAndSetClient = clientId => {
       const headers = {Authorization: localStorage.getItem("token")};
       return qwest.get(`/api/users/${clientId}`, null, {headers})
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+               })
                .then(client => dispatch(setClient(client)))
-               .catch(error => {
-                  //HANDLE ERROR
-               });
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 };
 

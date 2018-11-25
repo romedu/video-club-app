@@ -27,7 +27,8 @@ class RegisterForm extends Component {
    onFormSubmit = e => {
       e.preventDefault();
       const {isLoading, ...userData} = this.state;
-      this.setState({isLoading: true}, () => this.props.onUserRegister(userData));
+      if(userData.password === userData.confirmPassword) this.setState({isLoading: true}, () => this.props.onUserRegister(userData));
+      else console.log("create message");
    }
 
    render(){

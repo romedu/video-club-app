@@ -11,6 +11,7 @@ import clientReducer from "./store/reducers/clientReducer";
 import moviesReducer from "./store/reducers/moviesReducer";
 import rentedMoviesReducer from "./store/reducers/rentedMoviesReducer";
 import movieSearchReducer from "./store/reducers/movieSearchReducer";
+import messagesReducer from "./store/reducers/messagesReducer";
 import {LOGOUT} from "./store/actions/actionTypes";
 
 //REMOVE FOR PRODUCTION
@@ -21,7 +22,8 @@ const reducers = combineReducers({
    clients: clientReducer,
    movies: moviesReducer,
    rentedMovies: rentedMoviesReducer,
-   movieSearch: movieSearchReducer
+   movieSearch: movieSearchReducer,
+   message: messagesReducer
 });
 
 const rootReducer = (state, action) => {

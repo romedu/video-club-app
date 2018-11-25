@@ -1,18 +1,22 @@
 import qwest from "qwest";
 import * as actionTypes from "./actionTypes";
+import {createMessage} from "./message";
 
 export const getRentedMovies = () => {
    return dispatch => {
       const headers = {Authorization: localStorage.getItem("token")};
       return qwest.get("/api/rentedMovies", null, {headers})
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
                .then(movies => dispatch({
                   type: actionTypes.GET_RENTED_MOVIES,
                   movies
                }))
-               .catch(error => {
-                  //HANDLE ERROR
-               })
+               .catch(error => dispatch(createMessage("Error", error.message)))
    };
 }
 
@@ -29,12 +33,15 @@ export const createRentedMovie = (movie, rentedDays) => {
 
       return qwest.post("/api/rentedMovies", rentMovie, {headers})
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
                .then(newMovie => dispatch({
                   type: actionTypes.DECREASE_AVAILABLE_MOVIE
                }))
-               .catch(error => {
-                  //HANDLE ERROR
-               })
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 }
 
@@ -43,10 +50,13 @@ export const getAndSetRentedMovie = movieId => {
       const headers = {Authorization: localStorage.getItem("token")};
       return qwest.get(`/api/rentedMovies/${movieId}`, null, {headers})
                .then(data => JSON.parse(data.response))
-               .then(rentedMovie => dispatch(setRentedMovie(rentedMovie)))
-               .catch(error => {
-                  //HANDLE ERROR
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
                })
+               .then(rentedMovie => dispatch(setRentedMovie(rentedMovie)))
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 };
 
@@ -64,11 +74,14 @@ export const deleteRentedMovie = (movieId, imdbID) => {
       const headers = {Authorization: localStorage.getItem("token")};
       return qwest["delete"](`/api/rentedMovies/${movieId}`, {imdbID}, {headers})
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
                .then(message => dispatch({
                   type: actionTypes.CLEAR_RENTED_MOVIE
                }))
-               .catch(error => {
-                  //HANDLE ERROR
-               })
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 }

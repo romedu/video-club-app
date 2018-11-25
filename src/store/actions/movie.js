@@ -1,17 +1,21 @@
 import qwest from "qwest";
 import * as actionTypes from "./actionTypes";
+import {createMessage} from "./message";
 
 export const getMovies = () => {
    return dispatch => {
       return qwest.get("/api/movies")
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
                .then(movies => dispatch({
                   type: actionTypes.GET_MOVIES,
                   movies
                }))
-               .catch(error => {
-                  //HANDLE ERROR
-               })
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 };
 
@@ -26,13 +30,8 @@ export const createMovie = imdbID => {
             newMovieResponse = await qwest.post("/api/movies", movieData, {headers}),
             newMovie = JSON.parse(newMovieResponse.response);
 
-      if(!newMovie){
-         //HANDLE ERROR
-         console.log("Error, failed to create movie");
-         return;
-      }
+      if(!newMovie || (newMovie.status !== 200 && newMovie.status !== 201)) return dispatch(createMessage("Error", newMovie.message));
 
-      console.log(newMovie);
       return dispatch({
          type: actionTypes.CREATE_MOVIE,
          newMovie
@@ -43,6 +42,11 @@ export const createMovie = imdbID => {
 const buildMovie = imdbID => {
    return qwest.post("/api/services/searchMovieById", {imdbID})
             .then(data => JSON.parse(data.response))
+            .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
             .then(movie => {
                const distributors = ["Movie Max", "Mr. Movies"],
                      movieYear = movie.Released && movie.Released.split(" ")[2],
@@ -66,22 +70,23 @@ const buildMovie = imdbID => {
 
                return newMovieData;
             })
-            .catch(error => {
-               //HANDLE ERROR
-            });
+            .catch(error => ({message: error.message, status: 404}))
 };
 
 export const setMovie = movieId => {
    return dispatch => {
       return qwest.get(`/api/movies/${movieId}`)
                .then(data => JSON.parse(data.response))
+               .then(response => {
+                  const {status} = response;
+                  if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
+               })
                .then(movie => dispatch({
                   type: actionTypes.SET_MOVIE,
                   movie
                }))
-               .catch(error => {
-                  //HANDLE ERROR
-               })
+               .catch(error => dispatch(createMessage("Error", error.message)))
    }
 };
 

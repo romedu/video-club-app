@@ -8,6 +8,7 @@ import MovieApp from "./containers/MovieApp/MovieApp";
 import Client from "./containers/Client/Client";
 import ClientProfile from "./components/Client/ClientProfile/ClientProfile";
 import RentedMovieApp from "./containers/RentedMovieApp/RentedMovieApp";
+import Modal from "./components/UI/Modal/Modal";
 import './App.css';
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
    }
 
    render() {
-      const {user} = this.props;
+      const {user, message} = this.props;
 
       return (
          <BrowserRouter>
@@ -32,6 +33,9 @@ class App extends Component {
                   {user && user.isAdmin && <Route path="/rented-movies" component={RentedMovieApp} />}
                   <Redirect exact from="/" to="/movies" />
                </Switch>
+               <Modal show={message && message.label} label={message.label}>
+                  {message.content}
+               </Modal>
             </div>
          </BrowserRouter>
       );
@@ -39,7 +43,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-   user: state.user.userData
+   user: state.user.userData,
+   message: state.message
 });
 
 const mapDispatchToProps = dispatch => ({
