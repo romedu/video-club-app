@@ -7,7 +7,7 @@ const ClientThumbnail = props => (
       <li className={style.ClientThumbnail}>
          <h5> {props.name} {props.lastName} </h5>
          <div> Movies rented: {props.rentedMovies.length} </div>
-         <div> Debt: {props.debt}€ </div>
+         <div> Debt: €{props.debt} </div>
       </li>
    </Link>
 );

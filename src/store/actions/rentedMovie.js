@@ -30,8 +30,7 @@ export const createRentedMovie = (movie, rentedDays) => {
       return qwest.post("/api/rentedMovies", rentMovie, {headers})
                .then(data => JSON.parse(data.response))
                .then(newMovie => dispatch({
-                  type: actionTypes.CREATE_RENTED_MOVIE,
-                  newMovie
+                  type: actionTypes.DECREASE_AVAILABLE_MOVIE
                }))
                .catch(error => {
                   //HANDLE ERROR

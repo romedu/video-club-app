@@ -6,7 +6,6 @@ import HomeScreen from "../../components/MovieApp/HomeScreen/HomeScreen";
 import Movie from "../../components/MovieApp/Movie/Movie";
 
 class MovieApp extends Component {
-
    componentWillUnmount(){
       this.props.onSearchMoviesClear();
    }

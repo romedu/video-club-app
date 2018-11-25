@@ -4,9 +4,14 @@ import {getMovies} from "../../../store/actions/movie";
 import {createMovie, setMovie, clearMovie} from "../../../store/actions/movie";
 import {findByImdbID} from "../../../helpers";
 import MoviePage from "../MoviePage/MoviePage";
+import Loader from "../../UI/Loader/Loader";
 import style from "./Movie.module.css";
 
 class Movie extends Component {
+   state = {
+      isLoading: true
+   }
+
    componentDidMount(){
       this.props.onMoviesGet();
    }
@@ -18,6 +23,7 @@ class Movie extends Component {
          if(!currentMovie) onMovieCreate(match.params.id);
          else onMovieSet(currentMovie._id);
       }
+      else if(this.state.isLoading) this.setState({isLoading: false});
    }
 
    componentWillUnmount(){
@@ -29,7 +35,7 @@ class Movie extends Component {
 
       return (
          <section className={style.Movie}>
-            {currentMovie && <MoviePage movie={currentMovie} />}
+            {this.state.isLoading ? <Loader /> : <MoviePage movie={currentMovie} />}
          </section>
       )
    }

@@ -3,11 +3,13 @@ import {connect} from "react-redux";
 import {loginUser} from "../../../store/actions/user";
 import InputField from "../../UI/InputField/InputField";
 import Button from "../../UI/Button/Button";
+import Loader from "../../UI/Loader/Loader";
 
 class LoginForm extends Component {
    state = {
       username: "",
-      password: ""
+      password: "",
+      isLoading: false
    }
 
    onInputUpdate = e => {
@@ -17,16 +19,13 @@ class LoginForm extends Component {
 
    onFormSubmit = e => {
       e.preventDefault();
-      this.props.onUserLogin(this.state);
+      const {isLoading, ...userData} = this.state;
+      this.setState({isLoading: true}, () => this.props.onUserLogin(userData));
    }
 
    render(){
-      return (
-         <div>
-            <h2>
-               Login
-            </h2>
-            <form onSubmit={this.onFormSubmit}>
+      const content = this.state.isLoading ? <Loader /> : (
+         <form onSubmit={this.onFormSubmit}>
                <InputField type="text" name="username" value={this.state.username} updateInput={this.onInputUpdate}>
                   Username
                </InputField>
@@ -37,6 +36,14 @@ class LoginForm extends Component {
                   Submit
                </Button>
             </form>
+      );
+
+      return (
+         <div>
+            <h2>
+               Login
+            </h2>
+            {content}
          </div>
       )
    }

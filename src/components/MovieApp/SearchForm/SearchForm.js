@@ -18,6 +18,7 @@ class SearchForm extends Component {
    onFormSubmit = e => {
       e.preventDefault();
       const {title, year} = this.state;
+      this.props.loaderHandler();
       this.props.onMovieSearch(title, year);
    }
 
@@ -30,7 +31,7 @@ class SearchForm extends Component {
             <InputField type="number" name="year" value={year} updateInput={this.onInputUpdate}>
                Year:
             </InputField>
-            <Button color="submit">
+            <Button color="submit" disabled={this.props.disabled}>
                Find movie
             </Button>
          </form>

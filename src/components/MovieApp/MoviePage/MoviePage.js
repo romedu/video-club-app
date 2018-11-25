@@ -1,20 +1,43 @@
 import React, {Component, Fragment} from "react";
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {createRentedMovie} from "../../../store/actions/rentedMovie";
 import Button from "../../UI/Button/Button";
+import Loader from "../../UI/Loader/Loader";
 
 class MoviePage extends Component {
    state = {
-      daysForRent: 0
+      daysForRent: 1,
+      isLoading: false
    };
+
+   componentDidUpdate(prevProps){
+      const {movie} = this.props;
+      if(this.state.isLoading && prevProps.movie.availableForRent !== movie.availableForRent) this.setState({isLoading: false});
+   }
 
    updateInput = e => this.setState({daysForRent: e.target.value});
 
-   rentMovie = () => this.props.onMovieRent(this.props.movie, this.state.daysForRent);
+   rentMovie = e => {
+      e.preventDefault();
+      const {movie, onMovieRent} = this.props;
+      this.setState({isLoading: true}, () => onMovieRent(movie, this.state.daysForRent)); 
+   }
 
    render(){
-      const {daysForRent} = this.state,
-            {movie} = this.props;
+      const {daysForRent, isLoading} = this.state,
+            {movie} = this.props,
+            rentForm = (
+               <form onSubmit={this.rentMovie}>
+                  <h3> Rent the movie </h3>
+                  <label> Rent for: </label>
+                  <input type="number" min="1" max="7" onChange={this.updateInput} value={daysForRent} />
+                  <span> days </span>
+                  <Button color="sale" disabled={movie.availableForRent === 0}>
+                     Rent Movie
+                  </Button>
+               </form>
+            );
 
       return (
          <Fragment>
@@ -59,13 +82,7 @@ class MoviePage extends Component {
             <p>
                Price: {movie.price}
             </p>
-            <div>
-            <h3> Rent the movie </h3>
-            <input type="number" min="1" max="7" onChange={this.updateInput} value={daysForRent} />
-            <Button color={daysForRent < 1 ? "disabled" : "sale"} action={this.rentMovie}>
-               Rent Movie
-            </Button>
-            </div>
+            {isLoading ? <Loader /> : rentForm}
          </Fragment>
       );
    }
@@ -75,4 +92,4 @@ const mapDispatchToProps = dispatch => ({
    onMovieRent: (movie, rentedDays) => dispatch(createRentedMovie(movie, rentedDays))
 });
 
-export default connect(null, mapDispatchToProps)(MoviePage);
+export default connect(null, mapDispatchToProps)(withRouter(MoviePage));

@@ -12,20 +12,24 @@ import './App.css';
 
 class App extends Component {
    componentDidMount(){
-      this.props.onUserVerify();
+      if(localStorage.getItem("token")) this.props.onUserVerify();
    }
 
    render() {
+      const {user} = this.props;
+
       return (
          <BrowserRouter>
             <div className="App">
                <Nav />
                <Switch>
+                  {user && <Redirect from="/auth" to="/" />}
                   <Route path="/auth" component={Authentication} />
+                  {!user && <Redirect to="/auth/login" />}
                   <Route path="/movies" component={MovieApp} />
-                  <Route path="/clients" component={Client} />
+                  {user && user.isAdmin && <Route path="/clients" component={Client} />}
                   <Route path="/my-profile" component={ClientProfile} />
-                  <Route path="/rented-movies" component={RentedMovieApp} />
+                  {user && user.isAdmin && <Route path="/rented-movies" component={RentedMovieApp} />}
                   <Redirect exact from="/" to="/movies" />
                </Switch>
             </div>
@@ -34,8 +38,12 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+   user: state.user.userData
+});
+
 const mapDispatchToProps = dispatch => ({
    onUserVerify: () => dispatch(verifyUser())
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

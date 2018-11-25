@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getAndSetRentedMovie, deleteRentedMovie} from "../../../store/actions/rentedMovie";
 import {clearRentedMovie} from "../../../store/actions/rentedMovie";
 import RentedPage from "../RentedPage/RentedPage";
+import Loader from "../../UI/Loader/Loader";
 
 class RentedMovie extends Component {
    state = {
@@ -15,8 +16,10 @@ class RentedMovie extends Component {
    }
 
    componentDidUpdate(prevProps){
-      const {currentMovie, history} = this.props;
-      if(prevProps.currentMovie && !currentMovie) history.goBack();
+      const {isLoading} = this.state,
+            {currentMovie, history} = this.props;
+      if(isLoading && currentMovie) this.setState({isLoading: false});
+      else if(prevProps.currentMovie && !currentMovie) history.goBack();
    }
 
    componentWillUnmount(){
@@ -24,10 +27,12 @@ class RentedMovie extends Component {
    }
 
    render(){
-      const {currentMovie, onRentedMovieDelete} = this.props;
+      const {isLoading} = this.state,
+            {currentMovie, onRentedMovieDelete} = this.props;
+
       return (
          <section>
-            {currentMovie && <RentedPage movie={currentMovie} returnMovie={() => onRentedMovieDelete(currentMovie._id, currentMovie.imdbID)} />}
+            {isLoading ? <Loader /> : <RentedPage movie={currentMovie} returnMovie={() => onRentedMovieDelete(currentMovie._id, currentMovie.imdbID)} />}
          </section>
       )
    }

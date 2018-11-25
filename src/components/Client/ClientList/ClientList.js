@@ -2,10 +2,21 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getClients, clearClients} from "../../../store/actions/client";
 import ClientThumbnail from "../ClientThumbnail/ClientThumbnail";
+import Loader from "../../UI/Loader/Loader";
 
 class ClientList extends Component {
+   state = {
+      isLoading: true
+   }
+
    componentDidMount(){
       this.props.onClientsGet();
+   }
+
+   componentDidUpdate(){
+      const {clients} = this.props,
+            {isLoading} = this.state;
+      if(clients && isLoading) this.setState({isLoading: false});
    }
 
    componentWillUnmount(){
@@ -22,7 +33,7 @@ class ClientList extends Component {
                Clients
             </h2>
             <ul>
-               {clientList}
+               {this.state.isLoading ? <Loader /> : clientList}
             </ul>
          </section>
       );
