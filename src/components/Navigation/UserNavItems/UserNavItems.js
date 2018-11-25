@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import NavItem from "../NavItem/NavItem";
-import Button from "../../UI/Button/Button";
 import {logoutUser} from "../../../store/actions/user";
 
 const UserNavItems = props => (
@@ -9,9 +8,9 @@ const UserNavItems = props => (
       <NavItem url="/my-profile">
          My Profile
       </NavItem>
-      <Button color="NavItem" action={props.onUserLogout}>
+      <NavItem action={props.onUserLogout} url="/auth/login">
          Logout
-      </Button>
+      </NavItem>
    </Fragment>
 );
 
