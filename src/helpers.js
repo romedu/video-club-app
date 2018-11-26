@@ -9,7 +9,6 @@ export const calculateDebt = (currentDebt, rentedMovies) => {
       if(movieReturnDate > currentDate) return;
       interest += Math.floor((currentDate - movieReturnDate) / 86400000);
    });
-   console.log(currentDebt, rentedMovies);
    return currentDebt + interest;
 };
 

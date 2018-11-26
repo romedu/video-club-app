@@ -30,7 +30,9 @@ export const createMovie = imdbID => {
             newMovieResponse = await qwest.post("/api/movies", movieData, {headers}),
             newMovie = JSON.parse(newMovieResponse.response);
 
-      if(!newMovie || (newMovie.status !== 200 && newMovie.status !== 201)) return dispatch(createMessage("Error", newMovie.message));
+      if(!newMovie || (newMovie.status && newMovie.status !== 200 && newMovie.status !== 201)){
+         return dispatch(createMessage("Error", newMovie.message));
+      }
 
       return dispatch({
          type: actionTypes.CREATE_MOVIE,
