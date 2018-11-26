@@ -32,6 +32,7 @@ export const getAndSetClient = clientId => {
                .then(response => {
                   const {status} = response;
                   if(status && status !== 200 && status !== 201) throw new Error(response.message);
+                  return response;
                })
                .then(client => dispatch(setClient(client)))
                .catch(error => dispatch(createMessage("Error", error.message)))

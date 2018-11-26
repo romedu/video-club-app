@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
-import {setClient, getAndSetClient, clearClient} from "../../../store/actions/client";
+import {getAndSetClient, clearClient} from "../../../store/actions/client";
 import RentedList from "../../RentedMovie/RentedList/RentedList";
 import Loader from "../../UI/Loader/Loader";
 
@@ -10,9 +10,9 @@ class ClientProfile extends Component {
    }
 
    componentDidMount(){
-      const {match, user, onClientSet, onClientGetAndSet} = this.props;
+      const {match, user, onClientGetAndSet} = this.props;
 
-      if(match.path === "/my-profile") onClientSet(user);
+      if(match.path === "/my-profile") onClientGetAndSet(user._id);
       else onClientGetAndSet(match.params.id);
    }
 
@@ -29,7 +29,7 @@ class ClientProfile extends Component {
    render(){
       const {isLoading} = this.state,
             {client} = this.props,
-            content = client && (<Fragment>
+            content = !isLoading && client && (<Fragment>
                <h2> {client.name}'s Profile </h2>
                <h5> Name: {client.name} {client.lastName} </h5>
                <h5> Phone Number: {client.phoneNumber} </h5>
@@ -53,7 +53,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-   onClientSet: client => dispatch(setClient(client)),
    onClientGetAndSet: clientId => dispatch(getAndSetClient(clientId)),
    onClientClear: () => dispatch(clearClient)
 });

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getAndSetRentedMovie, deleteRentedMovie} from "../../../store/actions/rentedMovie";
 import {clearRentedMovie} from "../../../store/actions/rentedMovie";
-import {createMessage} from "../../../store/actions/message";
 import RentedPage from "../RentedPage/RentedPage";
 import Loader from "../../UI/Loader/Loader";
 
@@ -45,8 +44,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
    onSetRentedMovie: movieId => dispatch(getAndSetRentedMovie(movieId)),
    onClearRentedMovie: () => dispatch(clearRentedMovie),
-   onRentedMovieDelete: (movieId, imdbID) => dispatch(deleteRentedMovie(movieId, imdbID)),
-   onMessageCreate: (label, content) => dispatch(createMessage(label, content))
+   onRentedMovieDelete: (movieId, imdbID) => dispatch(deleteRentedMovie(movieId, imdbID))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RentedMovie);

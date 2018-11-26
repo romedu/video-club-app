@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {createRentedMovie} from "../../../store/actions/rentedMovie";
+import {createMessage} from "../../../store/actions/message";
 import Button from "../../UI/Button/Button";
 import Loader from "../../UI/Loader/Loader";
 
@@ -12,8 +13,10 @@ class MoviePage extends Component {
    };
 
    componentDidUpdate(prevProps){
-      const {movie} = this.props;
-      if(this.state.isLoading && prevProps.movie.availableForRent !== movie.availableForRent) this.setState({isLoading: false});
+      const {movie, onMessageCreate} = this.props;
+      if(this.state.isLoading && prevProps.movie.availableForRent !== movie.availableForRent){
+         this.setState({isLoading: false}, () => onMessageCreate("Message", "Movie rented successfully"));
+      }
    }
 
    updateInput = e => this.setState({daysForRent: e.target.value});
@@ -89,7 +92,8 @@ class MoviePage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-   onMovieRent: (movie, rentedDays) => dispatch(createRentedMovie(movie, rentedDays))
+   onMovieRent: (movie, rentedDays) => dispatch(createRentedMovie(movie, rentedDays)),
+   onMessageCreate: (label, content) => dispatch(createMessage(label, content))
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(MoviePage));

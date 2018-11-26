@@ -5,7 +5,7 @@ import styles from "./SideDrawer.module.css";
 
 const SideDrawer = props => (
    <Fragment>
-      <Backdrop show={props.show} hide={props.hide} />
+      <Backdrop sideDrawer={true} show={props.show} hide={props.hide} />
       <div className={`${styles.SideDrawer} ${props.show ?  styles.Open : styles.Close}`}>
          <nav>
             <NavItems />

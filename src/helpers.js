@@ -1,10 +1,14 @@
 import moment from "moment";
 
 export const calculateDebt = (currentDebt, rentedMovies) => {
-   const currentDate = new Date();
+   const currentDate = moment(new Date());
    let interest = 0;
 
-   rentedMovies.forEach(movie => {interest += Math.floor((currentDate - new Date(movie.rentedAt)) / 86400000)});
+   rentedMovies.forEach(movie => {
+      const movieReturnDate = moment(movie.rentedAt).add(movie.rentedDays, "days");
+      interest += Math.floor((currentDate - movieReturnDate) / 86400000);
+   });
+   console.log(currentDebt, rentedMovies);
    return currentDebt + interest;
 };
 
