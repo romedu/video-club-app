@@ -6,6 +6,7 @@ export const calculateDebt = (currentDebt, rentedMovies) => {
 
    rentedMovies.forEach(movie => {
       const movieReturnDate = moment(movie.rentedAt).add(movie.rentedDays, "days");
+      if(movieReturnDate > currentDate) return;
       interest += Math.floor((currentDate - movieReturnDate) / 86400000);
    });
    console.log(currentDebt, rentedMovies);
