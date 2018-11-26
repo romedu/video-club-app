@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {searchMovie} from "../../../store/actions/movieSearch";
 import InputField from "../../UI/InputField/InputField";
 import Button from "../../UI/Button/Button";
+import styles from "./SearchForm.module.css";
 
 class SearchForm extends Component {
    state = {
@@ -28,9 +29,12 @@ class SearchForm extends Component {
       return (
          <form onSubmit={this.onFormSubmit}>
             <InputField type="text" name="title" placeholder="Search by movie title" value={title} updateInput={this.onInputUpdate} />
-            {/* <InputField type="number" name="year" value={this.state.year} updateInput={this.onInputUpdate}>
-               Year:
-            </InputField> */}
+            <fieldset className={styles.Fieldset}>
+               <label>
+                  Year: 
+               </label>
+               <input type="number" name="year" max={new Date().getFullYear()} value={this.state.year} onChange={this.onInputUpdate} />
+            </fieldset>
             <Button color="submit" disabled={this.props.disabled}>
                Find movie
             </Button>

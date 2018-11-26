@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getClients, clearClients} from "../../../store/actions/client";
 import ClientThumbnail from "../ClientThumbnail/ClientThumbnail";
 import Loader from "../../UI/Loader/Loader";
+import appStyles from "../../../App.module.css";
 
 class ClientList extends Component {
    state = {
@@ -32,7 +33,7 @@ class ClientList extends Component {
             <h2>
                Clients
             </h2>
-            <ul>
+            <ul className={appStyles.ThumbnailList}>
                {this.state.isLoading ? <Loader /> : clientList}
             </ul>
          </section>

@@ -44,7 +44,7 @@ class MoviePage extends Component {
             <h2>
                {movie.title}
             </h2>
-            <img src={movie.image} alt="" />
+            <img src={movie.image} />
             <h4>
                We have {movie.availableForRent} copies available
             </h4>

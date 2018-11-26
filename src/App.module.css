@@ -1,0 +1,43 @@
+.App {
+   width: 75vw;
+   padding: 0 12.5vw;
+}
+
+.MovieThumbnail {
+   width: 248px;
+   height: 60vh;
+   margin-bottom: 3vh;
+   padding: 23px;
+   margin: 10px 4px;
+   border: 1px solid black;
+   list-style: none;
+   text-align: center;
+}
+
+.MovieThumbnail img {
+   height: 33vh;
+   width: 60%;
+}
+
+.ThumbnailList {
+   padding: 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+@media(max-width: 810px){
+   .ThumbnailList {
+      justify-content: center;
+   }
+
+   .MovieThumbnail {
+      width: 100%;
+      height: 50vh;
+      margin: 20px 0;
+   }
+
+   .MovieThumbnail img {
+      height: 30vh;
+   }
+}

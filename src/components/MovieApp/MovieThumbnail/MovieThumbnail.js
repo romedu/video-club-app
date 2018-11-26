@@ -1,19 +1,25 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import styles from "./MovieThumbnail.module.css";
+import Button from "../../UI/Button/Button";
+import appStyles from "../../../App.module.css";
 
 const MovieThumbnail = props => (
-   <Link to={`/movies/${props.imdbID}`}>
-      <li className={styles.movieThumbnail}>
-         <h4>
-            {props.Title}
-         </h4>
-         <img src={props.Poster} alt="" />
-         <div>
-            Year: {props.Year}
-         </div>
-      </li>
-   </Link>
+   <li className={`${appStyles.MovieThumbnail}`}>
+      <Link to={`/movies/${props.imdbID}`}>
+         <img src={props.Poster} />
+      </Link>
+      <h4>
+         {props.Title}
+      </h4>
+      <div>
+         Year: {props.Year}
+      </div>
+      <Link to={`/movies/${props.imdbID}`}>
+         <Button>
+            Check Movie
+         </Button>
+      </Link>
+   </li>
 );
 
 export default MovieThumbnail;

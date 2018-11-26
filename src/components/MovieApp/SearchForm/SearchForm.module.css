@@ -1,0 +1,18 @@
+.Fieldset {
+   border: none;
+   width: 50%;
+   margin: 0 auto;
+}
+
+.Fieldset label {
+   font-weight: bold;
+   font-size: 1.2em;
+   margin-right: 1vw;
+}
+
+.Fieldset input {
+   width: 9vw;
+   padding: 1%;
+   font-size: 1.2em;
+   box-shadow: 2px 2px 3px gray;
+}

@@ -8,7 +8,7 @@ const RentedPage = ({movie, returnMovie}) => (
       <h2>
          {movie.title}
       </h2>
-      <img src={movie.image} alt="" />
+      <img src={movie.image} />
       <h4>
          Date Rented: {simplifyDate(movie.rentedAt)}
       </h4>

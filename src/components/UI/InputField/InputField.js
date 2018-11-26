@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./InputField.module.css";
 
 const inputField = props => (
-    <fieldset>
+    <fieldset className={styles.InputField}>
         <label>
             {props.children}
         </label>

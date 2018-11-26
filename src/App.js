@@ -9,7 +9,7 @@ import Client from "./containers/Client/Client";
 import ClientProfile from "./components/Client/ClientProfile/ClientProfile";
 import RentedMovieApp from "./containers/RentedMovieApp/RentedMovieApp";
 import Modal from "./components/UI/Modal/Modal";
-import './App.css';
+import styles from './App.module.css';
 
 class App extends Component {
    componentDidMount(){
@@ -21,7 +21,7 @@ class App extends Component {
 
       return (
          <BrowserRouter>
-            <div className="App">
+            <div className={styles.App}>
                <Nav />
                <Switch>
                   {user && <Redirect from="/auth" to="/" />}

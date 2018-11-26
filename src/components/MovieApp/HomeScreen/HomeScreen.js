@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import SearchForm from "../SearchForm/SearchForm";
 import MovieList from "../MovieList/MovieList";
 import Loader from "../../UI/Loader/Loader";
+import styles from "./HomeScreen.module.css";
 
 class HomeScreen extends Component {
    state = {
@@ -20,7 +21,7 @@ class HomeScreen extends Component {
       const {isLoading} = this.state;
 
       return (
-         <section>
+         <section className={styles.HomeScreen}>
             <h1>
                Video Club App
             </h1>
