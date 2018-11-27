@@ -4,6 +4,7 @@ import {loginUser} from "../../../store/actions/user";
 import InputField from "../../UI/InputField/InputField";
 import Button from "../../UI/Button/Button";
 import Loader from "../../UI/Loader/Loader";
+import appStyles from "../../../App.module.css";
 
 class LoginForm extends Component {
    state = {
@@ -39,7 +40,7 @@ class LoginForm extends Component {
       );
 
       return (
-         <div>
+         <div className={appStyles.Authentication}>
             <h2>
                Login
             </h2>

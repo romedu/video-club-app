@@ -1,4 +1,15 @@
 .Button {
    display: block;
    margin: 1vh auto;
+   outline: none;
+}
+
+.submit {
+   width: 30%;
+   margin-top: 4vh;
+   padding: 1%;
+   font-size: 1.1em;
+   font-weight: bold;
+   background-color: lightgray;
+   box-shadow: 2px 2px 3px gray;
 }
