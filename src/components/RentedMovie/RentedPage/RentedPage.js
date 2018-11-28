@@ -1,8 +1,8 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
-import {simplifyDate} from "../../../helpers";
+import {simplifyDate, itsDue, sumDaysToDate} from "../../../helpers";
 import Button from "../../UI/Button/Button";
-import styles from "./RentedPage.module.css";
+import styles from "../RentedMovie/RentedMovie.module.css";
 
 const RentedPage = ({movie, returnMovie}) => (
    <Fragment>
@@ -13,7 +13,7 @@ const RentedPage = ({movie, returnMovie}) => (
       <h4>
          Date Rented: {simplifyDate(movie.rentedAt)}
       </h4>
-      <h4>
+      <h4 className={itsDue(sumDaysToDate(movie.rentedAt, movie.rentedDays)) ? styles.DueDate : null}>
          Due Date: {simplifyDate(movie.rentedAt, movie.rentedDays)}
       </h4>
       <Link to={`/clients/${movie.rentedBy._id}`} style={{display: "block"}}>
@@ -22,7 +22,7 @@ const RentedPage = ({movie, returnMovie}) => (
       <Link to={`/movies/${movie.imdbID}`}>
          Movie Description
       </Link>
-      <Button action={returnMovie}>
+      <Button color="submit" action={returnMovie}>
          Return Movie
       </Button>
    </Fragment>

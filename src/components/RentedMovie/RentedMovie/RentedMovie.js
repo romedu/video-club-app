@@ -4,6 +4,7 @@ import {getAndSetRentedMovie, deleteRentedMovie} from "../../../store/actions/re
 import {clearRentedMovie} from "../../../store/actions/rentedMovie";
 import RentedPage from "../RentedPage/RentedPage";
 import Loader from "../../UI/Loader/Loader";
+import styles from "./RentedMovie.module.css";
 
 class RentedMovie extends Component {
    state = {
@@ -30,7 +31,7 @@ class RentedMovie extends Component {
             {currentMovie, onRentedMovieDelete} = this.props;
 
       return (
-         <section>
+         <section className={styles.RentedMovie}>
             {isLoading ? <Loader /> : <RentedPage movie={currentMovie} returnMovie={() => onRentedMovieDelete(currentMovie._id, currentMovie.imdbID)} />}
          </section>
       )

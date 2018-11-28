@@ -1,0 +1,23 @@
+.RentedMovie {
+   width: 80%;
+   margin: 5vh auto;
+   padding-bottom: 2vh;
+   border: 1px solid black;
+   text-align: center;
+   font-size: 1em;
+}
+
+.RentedMovie a:first-of-type {
+   margin-bottom: 2vh;
+}
+
+.RentedMovie a {
+   color: rgb(100, 59, 134);
+   font-style: italic;
+   font-size: 1.1em;
+   text-decoration: underline;
+}
+
+.DueDate {
+   color: red;
+}
