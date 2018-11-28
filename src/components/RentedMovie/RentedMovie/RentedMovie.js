@@ -28,17 +28,18 @@ class RentedMovie extends Component {
 
    render(){
       const {isLoading} = this.state,
-            {currentMovie, onRentedMovieDelete} = this.props;
+            {currentMovie, user, onRentedMovieDelete} = this.props;
 
       return (
          <section className={styles.RentedMovie}>
-            {isLoading ? <Loader /> : <RentedPage movie={currentMovie} returnMovie={() => onRentedMovieDelete(currentMovie._id, currentMovie.imdbID)} />}
+            {isLoading ? <Loader /> : <RentedPage userIsAdmin={user.isAdmin} movie={currentMovie} returnMovie={() => onRentedMovieDelete(currentMovie._id, currentMovie.imdbID)} />}
          </section>
       )
    }
 }
 
 const mapStateToProps = state => ({
+   user: state.user.userData,
    currentMovie: state.rentedMovies.current
 });
 

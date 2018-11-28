@@ -4,7 +4,7 @@ import {simplifyDate, itsDue, sumDaysToDate} from "../../../helpers";
 import Button from "../../UI/Button/Button";
 import styles from "../RentedMovie/RentedMovie.module.css";
 
-const RentedPage = ({movie, returnMovie}) => (
+const RentedPage = ({movie, returnMovie, userIsAdmin}) => (
    <Fragment>
       <h2>
          {movie.title}
@@ -22,9 +22,9 @@ const RentedPage = ({movie, returnMovie}) => (
       <Link to={`/movies/${movie.imdbID}`}>
          Movie Description
       </Link>
-      <Button color="submit" action={returnMovie}>
+      {userIsAdmin && <Button color="submit" action={returnMovie}>
          Return Movie
-      </Button>
+      </Button>}
    </Fragment>
 );
 
