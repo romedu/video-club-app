@@ -1,3 +1,36 @@
 .Movie {
-   padding: 5vh 0;
+   width: 80%;
+   margin: 5vh auto;
+   border: 1px solid black;
+   text-align: center;
+   font-size: 1em;
+}
+
+.Movie h5 {
+   font-size: 1.1em;
+   margin-bottom: 1vh;
+}
+
+.Movie ul {
+   padding: 0;
+   margin: 0;
+}
+
+.Movie li {
+   list-style: none;
+}
+
+.Movie p {
+   font-size: 1.2em;
+   font-weight: bold;
+}
+
+.Plot {
+   text-align: unset;
+}
+
+.Distributed {
+   text-align: right;
+   font-weight: bold;
+   margin: 1.5vh;
 }

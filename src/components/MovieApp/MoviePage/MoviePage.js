@@ -5,6 +5,7 @@ import {createRentedMovie} from "../../../store/actions/rentedMovie";
 import {createMessage} from "../../../store/actions/message";
 import Button from "../../UI/Button/Button";
 import Loader from "../../UI/Loader/Loader";
+import styles from "../Movie/Movie.module.css";
 
 class MoviePage extends Component {
    state = {
@@ -39,6 +40,9 @@ class MoviePage extends Component {
                   <Button color="sale" disabled={movie.availableForRent === 0}>
                      Rent Movie
                   </Button>
+                  <div className={styles.Distributed}>
+                     Distributed by: {movie.distributedBy}
+                  </div>
                </form>
             );
 
@@ -75,15 +79,12 @@ class MoviePage extends Component {
                <h5>
                   Plot:
                </h5>
-               <div>
+               <div className={styles.Plot}>
                   {movie.plot}
                </div>
             </div>
-            <div>
-               Distributed by: {movie.distributedBy}
-            </div>
             <p>
-               Price: {movie.price}
+               Price: €{movie.price}
             </p>
             {isLoading ? <Loader /> : rentForm}
          </Fragment>
