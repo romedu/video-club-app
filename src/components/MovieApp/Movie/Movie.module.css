@@ -34,3 +34,14 @@
    font-weight: bold;
    margin: 1.5vh;
 }
+
+@media(max-width: 500px){
+   .Movie {
+      border: none;
+   }
+
+   .Movie img {
+      width: 80%;
+      margin: 0 auto;
+   }
+}

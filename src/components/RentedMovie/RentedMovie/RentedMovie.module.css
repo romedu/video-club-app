@@ -21,3 +21,14 @@
 .DueDate {
    color: red;
 }
+
+@media(max-width: 500px){
+   .RentedMovie {
+      border: none;
+   }
+
+   .RentedMovie img {
+      width: 80%;
+      margin: 0 auto;
+   }
+}

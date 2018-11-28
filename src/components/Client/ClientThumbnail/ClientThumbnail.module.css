@@ -12,3 +12,10 @@
    font-size: 1.1em;
    margin: 3vh 0;
 }
+
+@media(max-width: 500px){
+   .ClientThumbnail {
+      width: 100%;
+      margin: 3vh 0;
+   }
+}
