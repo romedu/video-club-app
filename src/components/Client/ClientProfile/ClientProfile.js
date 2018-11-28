@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getAndSetClient, clearClient} from "../../../store/actions/client";
 import RentedList from "../../RentedMovie/RentedList/RentedList";
 import Loader from "../../UI/Loader/Loader";
+import styles from "./ClientProfile.module.css";
 
 class ClientProfile extends Component {
    state = {
@@ -40,7 +41,7 @@ class ClientProfile extends Component {
             </Fragment>);
 
       return (
-         <div>
+         <div className={styles.Client}>
             {isLoading ? <Loader /> : content}
          </div>
       )
