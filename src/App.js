@@ -9,6 +9,7 @@ import Client from "./containers/Client/Client";
 import ClientProfile from "./components/Client/ClientProfile/ClientProfile";
 import RentedMovieApp from "./containers/RentedMovieApp/RentedMovieApp";
 import Modal from "./components/UI/Modal/Modal";
+import NotFound from "./components/UI/NotFound/NotFound";
 import styles from './App.module.css';
 
 class App extends Component {
@@ -30,8 +31,9 @@ class App extends Component {
                   <Route path="/movies" component={MovieApp} />
                   {user && user.isAdmin && <Route path="/clients" component={Client} />}
                   <Route path="/my-profile" component={ClientProfile} />
-                  {user && user.isAdmin && <Route path="/rented-movies" component={RentedMovieApp} />}
+                  {user && <Route path="/rented-movies" component={RentedMovieApp} />}
                   <Redirect exact from="/" to="/movies" />
+                  <Route path="*" component={NotFound} />
                </Switch>
                <Modal show={message && message.label} label={message.label}>
                   {message.content}
