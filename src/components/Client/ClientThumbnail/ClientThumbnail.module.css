@@ -1,8 +1,14 @@
 .ClientThumbnail {
-   width: 80vw;
+   width: 32%;
    height: 20vh;
-   margin: 2vh 10vh;
-   padding: 0.1vh 0;
+   margin: 1%;
+   padding: 1%;
    border: 1px solid black;
    list-style: none;
+   text-align: center;
+}
+
+.ClientThumbnail h5 {
+   font-size: 1.1em;
+   margin: 3vh 0;
 }

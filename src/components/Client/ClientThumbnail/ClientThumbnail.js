@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 import style from "./ClientThumbnail.module.css";
 
 const ClientThumbnail = props => (
-   <Link to={`/clients/${props._id}`}>
-      <li className={style.ClientThumbnail}>
+   <Link to={`/clients/${props._id}`} className={style.ClientThumbnail}>
+      <li>
          <h5> {props.name} {props.lastName} </h5>
          <div> Movies rented: {props.rentedMovies.length} </div>
          <div> Debt: €{props.debt} </div>
