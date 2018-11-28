@@ -22,7 +22,7 @@
    color: red;
 }
 
-@media(max-width: 500px){
+@media(max-width: 810px){
    .RentedMovie {
       border: none;
    }

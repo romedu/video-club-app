@@ -3,7 +3,7 @@
    justify-content: space-around;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 810px) {
    .NavItems {
       display: block;
    }

@@ -13,7 +13,7 @@
    margin: 3vh 0;
 }
 
-@media(max-width: 500px){
+@media(max-width: 8100px){
    .ClientThumbnail {
       width: 100%;
       margin: 3vh 0;

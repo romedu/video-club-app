@@ -10,7 +10,7 @@
    animation: load 3s infinite linear;
  }
  
-@media (min-width: 500px) {
+@media (min-width: 811px) {
    .Loader {
       width: 5vw;
       height: 5vw;

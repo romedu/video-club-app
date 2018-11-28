@@ -12,7 +12,7 @@
    justify-content: space-between;
 }
 
-@media(max-width: 500px){
+@media(max-width: 810px){
    .NavBar {
       display: none;
    }
