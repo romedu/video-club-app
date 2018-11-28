@@ -15,7 +15,7 @@ const MovieThumbnail = props => (
          Year: {props.Year}
       </div>
       <Link to={`/movies/${props.imdbID}`}>
-         <Button>
+         <Button color="content">
             Check Movie
          </Button>
       </Link>

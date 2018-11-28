@@ -13,3 +13,14 @@
    background-color: lightgray;
    box-shadow: 2px 2px 3px gray;
 }
+
+.content {
+   width: 72%;
+   padding: 1%;
+   margin-top: 3vh;
+   font-size: 1.1em;
+   font-weight: bold;
+   text-decoration: none;
+   background-color: lightgray;
+   box-shadow: 2px 2px 3px gray;
+}

@@ -21,6 +21,11 @@ class RegisterForm extends Component {
       isLoading: false
    }
 
+   componentDidUpdate(prevProps){
+      const {message} = this.props;
+      if(prevProps.message !== message) this.setState({isLoading: false});
+   }
+
    onInputUpdate = e => {
       const {name, type, value, checked} = e.target;
       this.setState({[name]: type === "checkbox" ? checked : value});
@@ -84,9 +89,13 @@ class RegisterForm extends Component {
    }
 }
 
+const mapStateToProps = state => ({
+   message: state.message.label
+});
+
 const mapDispatchToProps = dispatch => ({
    onUserRegister: userData => dispatch(registerUser(userData)),
    onMessageCreate: (label, content) => dispatch(createMessage(label, content))
 });
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

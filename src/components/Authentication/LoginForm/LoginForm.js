@@ -13,6 +13,11 @@ class LoginForm extends Component {
       isLoading: false
    }
 
+   componentDidUpdate(prevProps){
+      const {message} = this.props;
+      if(prevProps.message !== message) this.setState({isLoading: false});
+   }
+
    onInputUpdate = e => {
       const {name, value} = e.target;
       this.setState({[name]: value});
@@ -50,8 +55,12 @@ class LoginForm extends Component {
    }
 }
 
+const mapStateToProps = state => ({
+   message: state.message.label
+});
+
 const mapDispatchToProps = dispatch => ({
    onUserLogin: userData => dispatch(loginUser(userData))
 });
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -9,7 +9,8 @@ class Modal extends Component {
    closeModalHandler = () => {
       const {history, location, onMessageClear} = this.props;
       onMessageClear();
-      if(location.pathname === "/auth/login" || location.pathname === "/movies") history.push("/");
+      if(location.pathname === "/auth/login" || location.pathname === "/auth/register") return;
+      else if(location.pathname === "/movies") history.push("/");
       else history.goBack();
    }
 

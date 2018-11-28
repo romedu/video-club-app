@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import {simplifyDate} from "../../../helpers";
 import Button from "../../UI/Button/Button";
+import styles from "./RentedPage.module.css";
 
 const RentedPage = ({movie, returnMovie}) => (
    <Fragment>
