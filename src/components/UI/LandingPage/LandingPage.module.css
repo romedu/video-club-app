@@ -84,3 +84,9 @@
    opacity: 0
  }
 }
+
+@media(max-width: 600px){
+   .Door {
+      margin-top: 15vh;
+   }
+}
