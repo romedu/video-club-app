@@ -35,3 +35,10 @@
    background-color: lightgray;
    box-shadow: 2px 2px 3px gray;
 }
+
+@media(max-width: 600px){
+   .landing {
+      width: 80vw;
+      margin: 0 auto;
+   }
+}
