@@ -11,7 +11,7 @@ const NavItems = props => {
          {user} = props;
    
    if(user){
-      navItems.push(<NavItem key={"navItem0"} url="/"> Home </NavItem>);
+      navItems.push(<NavItem key={"navItem0"} url="/movies"> Home </NavItem>);
       if(user.isAdmin) navItems.push(<AdminNavItems key={"navItem1"} />);
       navItems.push(<UserNavItems key={"navItem2"} />);
    }   
