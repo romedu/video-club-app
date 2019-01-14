@@ -25,9 +25,9 @@ export const clearMovies = {
 
 export const createMovie = imdbID => {
    return async dispatch => {
-      const headers = {Authorization: localStorage.getItem("token")},
-            movieData = await buildMovie(imdbID),
-            newMovieResponse = await qwest.post("/api/movies", movieData, {headers}),
+      // const headers = {Authorization: localStorage.getItem("token")},
+      const movieData = await buildMovie(imdbID),
+            newMovieResponse = await qwest.post(`/api/movies?token=${localStorage.getItem("token")}`, movieData),
             newMovie = JSON.parse(newMovieResponse.response);
 
       if(!newMovie || (newMovie.status && newMovie.status !== 200 && newMovie.status !== 201)){

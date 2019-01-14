@@ -40,9 +40,9 @@ export const registerUser = userData => {
 };
 
 export const verifyUser = () => {
-   const headers = {Authorization: localStorage.getItem("token")};
+   // const headers = {Authorization: localStorage.getItem("token")};
    return dispatch => {
-      return qwest.get("/api/auth/verifyToken", null, {headers})
+      return qwest.get(`/api/auth/verifyToken?token=${localStorage.getItem("token")}`)
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;

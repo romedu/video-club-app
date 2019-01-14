@@ -4,8 +4,8 @@ import {createMessage} from "./message";
 
 export const getClients = () => {
    return dispatch => {
-      const headers = {Authorization: localStorage.getItem("token")};
-      return qwest.get("/api/users", null, {headers})
+      // const headers = {Authorization: localStorage.getItem("token")};
+      return qwest.get(`/api/users?token=${localStorage.getItem("token")}`)
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;
@@ -26,8 +26,8 @@ export const clearClients = {
 
 export const getAndSetClient = clientId => {
    return dispatch => {
-      const headers = {Authorization: localStorage.getItem("token")};
-      return qwest.get(`/api/users/${clientId}`, null, {headers})
+      // const headers = {Authorization: localStorage.getItem("token")};
+      return qwest.get(`/api/users/${clientId}?token=${localStorage.getItem("token")}`)
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;
