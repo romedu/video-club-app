@@ -4,8 +4,8 @@ import {createMessage} from "./message";
 
 export const getRentedMovies = () => {
    return dispatch => {
-      // const headers = {Authorization: localStorage.getItem("token")};
-      return qwest.get(`/api/rentedMovies?token=${localStorage.getItem("token")}`)
+      const headers = {Authorization: localStorage.getItem("token")};
+      return qwest.get("/api/rentedMovies", null, {headers})
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;
@@ -26,12 +26,12 @@ export const clearRentedMovies = {
 
 export const createRentedMovie = (movie, rentedDays) => {
    return dispatch => {
-      // const headers = {Authorization: localStorage.getItem("token")},
-      const {distributedBy, availableForRent, ...rentMovie} = movie;
+      const headers = {Authorization: localStorage.getItem("token")},
+            {distributedBy, availableForRent, ...rentMovie} = movie;
 
       rentMovie.rentedDays = rentedDays;
 
-      return qwest.post(`/api/rentedMovies?token=${localStorage.getItem("token")}`, rentMovie)
+      return qwest.post("/api/rentedMovies", rentMovie, {headers})
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;
@@ -47,8 +47,8 @@ export const createRentedMovie = (movie, rentedDays) => {
 
 export const getAndSetRentedMovie = movieId => {
    return dispatch => {
-      // const headers = {Authorization: localStorage.getItem("token")};
-      return qwest.get(`/api/rentedMovies/${movieId}?token=${localStorage.getItem("token")}`)
+      const headers = {Authorization: localStorage.getItem("token")};
+      return qwest.get(`/api/rentedMovies/${movieId}`, null, {headers})
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;
@@ -71,8 +71,8 @@ export const clearRentedMovie = ({
 
 export const deleteRentedMovie = (movieId, imdbID) => {
    return dispatch => {
-      // const headers = {Authorization: localStorage.getItem("token")};
-      return qwest["delete"](`/api/rentedMovies/${movieId}?token=${localStorage.getItem("token")}`, {imdbID})
+      const headers = {Authorization: localStorage.getItem("token")};
+      return qwest["delete"](`/api/rentedMovies/${movieId}`, {imdbID}, {headers})
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;

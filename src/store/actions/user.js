@@ -40,9 +40,9 @@ export const registerUser = userData => {
 };
 
 export const verifyUser = () => {
-   // const headers = {Authorization: localStorage.getItem("token")};
+   const headers = {Authorization: localStorage.getItem("token")};
    return dispatch => {
-      return qwest.get(`/api/auth/verifyToken?token=${localStorage.getItem("token")}`)
+      return qwest.get("/api/auth/verifyToken", null, {headers})
                .then(data => JSON.parse(data.response))
                .then(response => {
                   const {status} = response;
@@ -54,14 +54,10 @@ export const verifyUser = () => {
    }
 }
 
-const setUser = user => {
-   user.debt = calculateDebt(user.debt, user.rentedMovies);
-
-   return ({
-      type: LOGIN,
-      user
-   });
-};
+const setUser = user => ({
+   type: LOGIN,
+   user
+});
 
 export const logoutUser = () => {
    localStorage.removeItem("token");
